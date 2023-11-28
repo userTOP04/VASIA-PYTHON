@@ -26,7 +26,7 @@ def visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
     if option == "1":
         visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
     elif option == "2":
-        print("2")
+        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
     elif option == "3":
         print("3")
     elif option == "4":
@@ -47,14 +47,12 @@ def show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
 def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
     os.system("cls")
     show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
-    input("Чтобы продолжить нажмите ENTER")
-    en_name = "Трактирщих Жмых Злой"
-    en_money = 10
-    while en_money or pl_money <= 0:
-        os.system("cls")
-        print("1 - продолжить ")
-        print("2 - выйти ")
+    while True:
+        en_name = "Трактирщик Василий"
+        print("1 - сыграть в кости ")
+        print("2 - вернуться к камню ")
         option = input("Выберите вариант и нажмите ENTER ")
+        os.system("cls")
         if option == "1":
             pass
         elif option == "2":
@@ -67,7 +65,6 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
         en_turn = randint(2, 12)
 
         print(f"У {pl_name} {pl_money} монет")
-        print(f"У {en_name} {en_money} монет")
         input("Нажмите ENTER чтобы бросить кости")
 
         print(f"{pl_name} выбросил {pl_turn}")
@@ -75,14 +72,10 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
 
         if pl_turn > en_turn:
             pl_money += 1
-            en_money -= 100
             print(f"{pl_name} победил у него {pl_money}")
-            print(f"{en_name} проиграл у него осталось {en_money}")
             input("Чтобы продолжить нажмите ENTER")
         elif en_turn > pl_turn:
-            en_money += 1
             pl_money -= 1
-            print(f"{en_name} победил у него {en_money}")
             print(f"{pl_name} проиграл у него осталось {pl_money}")
             input("Чтобы продолжить нажмите ENTER")
         else:
@@ -96,9 +89,50 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
 
 
 
-def visit_battle():
+def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
     os.system("cls")
-    print("2")
+    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+    en_name = "Боевой Григорий"
+    en_hp = 100
+    print(f"{pl_name} приехал на арену ")
+    print("1 - Сражение с бойцом")
+    print("2 - Поехать обратно к камню")
+    option = input("Выберите вариант и нажмите ENTER ")
+    if option == "1":
+        print(f"На арену выходит {en_name}")
+        print("Бой начался!!!")
+    elif option == "2":
+        print(f"{pl_name} уежает с арены ")
+        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+    else:
+        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+    while True:
+        os.system("cls")
+        input("Чтобы ударить нажмите ENTER")
+
+        pl_at = randint(1, 10)
+        en_at = randint(1, 10)
+
+        en_hp -= pl_at
+        pl_hp -= en_at
+
+        print(f"{pl_name} ударил {en_name} на {pl_at} ")
+        print(f"У {en_name} осталось {en_hp}")
+        print(f"{en_name} ударил {pl_name} на {en_at} ")
+        print(f"У {pl_name} осталось {pl_hp}")
+        if pl_hp <= 0:
+            print(f"{pl_name} умер. GAME OVER")
+            input("Чтобы продолжить нажмите ENTER")
+            break
+        elif en_hp <= 0:
+            print(f"{pl_name} победил {en_name}")
+            print(f"{pl_name} уежает к камню")
+            input("Чтобы продолжить нажмите ENTER")
+            visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+        else:
+            pass
+        input("Чтобы продолжить нажмите ENTER")
+
 
 
 

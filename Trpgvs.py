@@ -9,44 +9,46 @@ def play_game():
     pl_money = 10
     pl_xp = 0
     pl_lvl = 1
+    pl_poution = 0
 
-    visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+    visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
 
 
 
-def visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
+def visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
     os.system("cls")
-    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
     print(f"{pl_name} приехал к камню. От камня идут три дороги:")
     print("1 - Играть в кости")
     print("2 - Сражение с разбойником")
     print("3 - Поехать в лавку")
-    print("4 - Играть в кости")
+    print("4 - Выйти из игры")
     option = input("Введите номер куда вы хотите пойти: ")
     if option == "1":
-        visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+        visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
     elif option == "2":
-        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
     elif option == "3":
-        print("3")
+        visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
     elif option == "4":
-        print("4")
+        return
     else:
-        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
 
 
 
-def show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
+def show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
     print("Имя", pl_name)
     print("Жизни", pl_hp)
     print("Деньги", pl_money)
     print("Опыт", pl_xp)
     print("Уровень", pl_lvl)
+    print("Зелья", pl_poution)
 
 
-def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
+def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
     os.system("cls")
-    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
     while True:
         en_name = "Трактирщик Василий"
         print("1 - сыграть в кости ")
@@ -57,9 +59,9 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
             pass
         elif option == "2":
             print(f"{pl_name} уходит из трактира")
-            visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+            visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
         else:
-            visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+            visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
 
         pl_turn = randint(2, 12)
         en_turn = randint(2, 12)
@@ -73,14 +75,14 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
         if pl_turn > en_turn:
             pl_money += 1
             print(f"{pl_name} победил у него {pl_money}")
-            input("Чтобы продолжить нажмите ENTER")
+            pouse()
         elif en_turn > pl_turn:
             pl_money -= 1
             print(f"{pl_name} проиграл у него осталось {pl_money}")
-            input("Чтобы продолжить нажмите ENTER")
+            pouse()
         else:
             print("Ничья")
-            input("Чтобы продолжить нажмите ENTER")
+            pouse()
 
 
 
@@ -89,11 +91,10 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
 
 
 
-def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
+def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
     os.system("cls")
-    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
     en_name = "Боевой Григорий"
-    en_hp = 100
     print(f"{pl_name} приехал на арену ")
     print("1 - Сражение с бойцом")
     print("2 - Поехать обратно к камню")
@@ -103,13 +104,34 @@ def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
         print("Бой начался!!!")
     elif option == "2":
         print(f"{pl_name} уежает с арены ")
-        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
     else:
-        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    pouse()
+    battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+
+
+def battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
+    en_name = "Боевой Григорий"
+    en_hp = 100
     while True:
         os.system("cls")
-        input("Чтобы ударить нажмите ENTER")
-
+        print("1 - Ударить врага")
+        print("2 - Выпить зелье лечения")
+        options = input("Выберете вариант и нажмите ENTER")
+        if options == "1":
+            pass
+        elif options == "2":
+            if pl_poution == 0:
+                print(f"У {pl_name} нет зелий.(Вы можете купить зелья в магазине)")
+                pouse()
+            else:
+                pl_poution -= 1
+                pl_hp += 30
+                if pl_hp > 100:
+                    pl_hp = 100
+                print(f"{pl_name} выпил зелье лечения, теперь у него {pl_hp}")
+                pouse()
         pl_at = randint(1, 10)
         en_at = randint(1, 10)
 
@@ -120,26 +142,48 @@ def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl):
         print(f"У {en_name} осталось {en_hp}")
         print(f"{en_name} ударил {pl_name} на {en_at} ")
         print(f"У {pl_name} осталось {pl_hp}")
+
         if pl_hp <= 0:
             print(f"{pl_name} умер. GAME OVER")
-            input("Чтобы продолжить нажмите ENTER")
+            pouse()
             break
         elif en_hp <= 0:
             print(f"{pl_name} победил {en_name}")
             print(f"{pl_name} уежает к камню")
-            input("Чтобы продолжить нажмите ENTER")
+            pouse()
             visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
         else:
             pass
-        input("Чтобы продолжить нажмите ENTER")
+        pouse()
 
 
 
-
-def visit_shop():
+def visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
     os.system("cls")
-    print("3")
+    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    poution_price = 5
+    print(f"1 - купить зелье лечения за {poution_price}")
+    print("2 - Поехать обратно к камню")
+    option = input("Выберите вариант и нажмите ENTER ")
+    if option == "1":
+        if pl_money < poution_price:
+            print(f"У {pl_name} не хватает монет")
+            pouse()
+            visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        elif pl_money >= pl_poution:
+            pl_money -= poution_price
+            pl_poution += 1
+            print(f"{pl_name} купил одно зелье лечение")
+            pouse()
+            visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    elif option == "2":
+        print(f"{pl_name} уходит из трактира")
+        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
 
+
+
+def pouse():
+    input("Чтобы продолжить нажмите ENTER")
 
 
 play_game()

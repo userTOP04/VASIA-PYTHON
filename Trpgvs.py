@@ -9,15 +9,15 @@ def play_game():
     pl_money = 10
     pl_xp = 0
     pl_lvl = 1
-    pl_poution = 0
+    pl_potions = 0
 
-    visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
 
 
 
-def visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
+def visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions):
     os.system("cls")
-    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    show_hero(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     print(f"{pl_name} приехал к камню. От камня идут три дороги:")
     print("1 - Играть в кости")
     print("2 - Сражение с разбойником")
@@ -25,30 +25,30 @@ def visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
     print("4 - Выйти из игры")
     option = input("Введите номер куда вы хотите пойти: ")
     if option == "1":
-        visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     elif option == "2":
-        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     elif option == "3":
-        visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     elif option == "4":
         return
     else:
-        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
 
 
 
-def show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
-    print("Имя", pl_name)
-    print("Жизни", pl_hp)
-    print("Деньги", pl_money)
-    print("Опыт", pl_xp)
-    print("Уровень", pl_lvl)
-    print("Зелья", pl_poution)
+def show_hero(name, hp, money, xp, lvl, poution):
+    print("Имя", name)
+    print("Жизни", hp)
+    print("Деньги", money)
+    print("Опыт", xp)
+    print("Уровень", lvl)
+    print("Зелья", poution)
 
 
-def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
+def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions):
     os.system("cls")
-    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    show_hero(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     while True:
         en_name = "Трактирщик Василий"
         print("1 - сыграть в кости ")
@@ -59,9 +59,9 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
             pass
         elif option == "2":
             print(f"{pl_name} уходит из трактира")
-            visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+            visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
         else:
-            visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+            visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
 
         pl_turn = randint(2, 12)
         en_turn = randint(2, 12)
@@ -91,9 +91,9 @@ def visit_casino(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
 
 
 
-def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
+def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions):
     os.system("cls")
-    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    show_hero(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     en_name = "Боевой Григорий"
     print(f"{pl_name} приехал на арену ")
     print("1 - Сражение с бойцом")
@@ -104,44 +104,42 @@ def visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
         print("Бой начался!!!")
     elif option == "2":
         print(f"{pl_name} уежает с арены ")
-        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     else:
-        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     pouse()
-    battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
 
 
-def battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
+def battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions):
     en_name = "Боевой Григорий"
     en_hp = 100
+    en_xp = 0
+    en_lvl = 1
+    en_money = 15
+    en_potions = 0
     while True:
         os.system("cls")
-        print("1 - Ударить врага")
-        print("2 - Выпить зелье лечения")
-        options = input("Выберете вариант и нажмите ENTER")
-        if options == "1":
-            pass
-        elif options == "2":
-            if pl_poution == 0:
-                print(f"У {pl_name} нет зелий.(Вы можете купить зелья в магазине)")
-                pouse()
-            else:
-                pl_poution -= 1
+        show_hero(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
+        show_hero(en_name, en_hp, en_money, en_xp, en_lvl, en_potions)
+        if pl_potions == 0:
+            print(f"{pl_name} хочет ударить {en_name}")
+            pouse()
+        else:
+            print("1 - Ударить врага")
+            print("2 - Выпить зелье лечения")
+            options = input("Выберете вариант и нажмите ENTER ")
+            if options == "1":
+                en_hp = battle_turn(pl_name, pl_hp, en_name, en_hp)
+                pl_hp = battle_turn(en_name, en_hp, pl_name, pl_hp)
+            elif options == "2":
+                pl_potions -= 1
                 pl_hp += 30
                 if pl_hp > 100:
                     pl_hp = 100
                 print(f"{pl_name} выпил зелье лечения, теперь у него {pl_hp}")
                 pouse()
-        pl_at = randint(1, 10)
-        en_at = randint(1, 10)
-
-        en_hp -= pl_at
-        pl_hp -= en_at
-
-        print(f"{pl_name} ударил {en_name} на {pl_at} ")
-        print(f"У {en_name} осталось {en_hp}")
-        print(f"{en_name} ударил {pl_name} на {en_at} ")
-        print(f"У {pl_name} осталось {pl_hp}")
+                pl_hp = battle_turn(en_name, en_hp, pl_name, pl_hp)
 
         if pl_hp <= 0:
             print(f"{pl_name} умер. GAME OVER")
@@ -149,18 +147,29 @@ def battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
             break
         elif en_hp <= 0:
             print(f"{pl_name} победил {en_name}")
-            print(f"{pl_name} уежает к камню")
             pouse()
-            visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl)
+            visit_battle(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
         else:
             pass
         pouse()
 
 
+def battle_turn(attacker_name, attacker_hp, defender_name, defender_hp):
+    if attacker_hp >= 0:
+        attack = randint(0, 10)
 
-def visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
+        defender_hp -= attack
+
+        print(f"{attacker_name} ударил {defender_name} на {attack} ")
+
+    return defender_hp
+
+
+
+
+def visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions):
     os.system("cls")
-    show_pl(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+    show_hero(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     poution_price = 5
     print(f"1 - купить зелье лечения за {poution_price}")
     print("2 - Поехать обратно к камню")
@@ -169,16 +178,16 @@ def visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution):
         if pl_money < poution_price:
             print(f"У {pl_name} не хватает монет")
             pouse()
-            visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
-        elif pl_money >= pl_poution:
+            visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
+        elif pl_money >= pl_potions:
             pl_money -= poution_price
-            pl_poution += 1
+            pl_potions += 1
             print(f"{pl_name} купил одно зелье лечение")
             pouse()
-            visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+            visit_shop(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
     elif option == "2":
         print(f"{pl_name} уходит из трактира")
-        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_poution)
+        visit_rock(pl_name, pl_hp, pl_money, pl_xp, pl_lvl, pl_potions)
 
 
 

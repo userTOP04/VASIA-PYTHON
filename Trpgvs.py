@@ -4,7 +4,7 @@ import os
 
 
 def play_game():
-    pl_name = input("Введите имя вашего игрового персонажа: ")
+    pl_name = input("Вlведите имя вашего игрового персонажа: ")
     pl_hp = 100
     pl_money = 10
     pl_xp = 0

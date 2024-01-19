@@ -1,22 +1,23 @@
 def password_check():
     password = input("Введите пороль: от 10 символов ")
     check_len = False
-    check_upper = False
     check_lower = False
     check_digit = False
+    check_upper = False
+
 
     if len(password) >= 10:
         check_len = True
-    if password.isupper() == False:
-        check_upper = True
-    if password.islower() == False:
-        check_lower = True
-    if password.isdigit() == False:
-        check_digit = True
-    if check_len and check_upper and check_lower and check_digit == True:
+    for char in password:
+        if char.islower():
+            check_lower = True
+        elif char.isupper():
+            check_upper = True
+        elif char.isdigit():
+            check_digit = True
+    if check_len and check_upper and check_lower and check_digit:
         return True
-    else:
-        return False
+    return False
 
 
 
